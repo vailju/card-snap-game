@@ -4,7 +4,7 @@ import org.snap.game.dto.Card;
 
 public interface MatchCondition {
 
-    boolean doCardsMatch(Card previousCard, Card currentCard);
+    boolean doCardsMatch(Card firstCard, Card secondCard);
 
     int getMinimumDeckNumber();
 

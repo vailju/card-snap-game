@@ -5,11 +5,11 @@ import org.snap.game.dto.Card;
 public class ValueMatchCondition implements MatchCondition {
 
     @Override
-    public boolean doCardsMatch(Card previousCard, Card currentCard) {
-        if (previousCard == null || currentCard == null) {
+    public boolean doCardsMatch(Card firstCard, Card secondCard) {
+        if (firstCard == null || secondCard == null) {
             return false;
         }
-        return previousCard.getValue().equals(currentCard.getValue());
+        return firstCard.getValue().equals(secondCard.getValue());
     }
 
     @Override
