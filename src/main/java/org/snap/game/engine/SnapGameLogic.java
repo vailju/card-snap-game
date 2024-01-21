@@ -34,12 +34,12 @@ public class SnapGameLogic {
                 currentPlayer.getFaceUpCards().push(currentCard);
                 System.out.println(PLAYER_STRING + currentPlayerId + " draws: " + currentCard);
                 long startTime = System.currentTimeMillis();
-                while ((System.currentTimeMillis() - startTime) < secondsToSnap * 1000 && !reader.ready()) {
+                while ((System.currentTimeMillis() - startTime) < secondsToSnap * 1000L && !reader.ready()) {
                     // time for players to snap
                 }
 
                 if (reader.ready()) {
-                    int snapperId = 0;
+                    int snapperId;
                     try {
                         snapperId = Integer.parseInt(reader.readLine());
                         handleSnap(players, numPlayers, matchCondition, snapperId);
@@ -55,7 +55,7 @@ public class SnapGameLogic {
     }
 
     private static boolean hasNextTurn(List<Player> players, int deckSize) {
-        return players.stream().filter(p -> p.getFaceDownCards().size() + p.getFaceUpCards().size() == deckSize).collect(Collectors.toList()).size() != 1;
+        return players.stream().filter(p -> p.getFaceDownCards().size() + p.getFaceUpCards().size() == deckSize).count() != 1;
     }
 
     private static boolean canPlayerDraw(Player player) {
