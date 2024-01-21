@@ -44,12 +44,12 @@ public class Dealer {
 
     public static List<Card> createStandardShuffledDecks(int numDecks) {
 
-        return createStandardDecks(numDecks,true);
+        return createStandardDecks(numDecks, true);
     }
 
     public static void dealCards(List<Card> deck, List<Player> players) {
         int numPlayers = players.size();
-        for (int i = 0 ; i < deck.size() ; i++) {
+        for (int i = 0; i < deck.size(); i++) {
             int currentPlayer = i % numPlayers;
             players.get(currentPlayer).getFaceDownCards().push(deck.get(i));
         }

@@ -6,6 +6,9 @@ public class ValueMatchCondition implements MatchCondition {
 
     @Override
     public boolean doCardsMatch(Card previousCard, Card currentCard) {
+        if (previousCard == null || currentCard == null) {
+            return false;
+        }
         return previousCard.getValue().equals(currentCard.getValue());
     }
 

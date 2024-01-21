@@ -1,16 +1,17 @@
 package org.snap.game.dto;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Player {
     int id;
-    Stack<Card> faceDownCards;
-    Stack<Card> faceUpCards;
+    Deque<Card> faceDownCards;
+    Deque<Card> faceUpCards;
 
     public Player(int id) {
         this.id = id;
-        this.faceDownCards = new Stack<>();
-        this.faceUpCards = new Stack<>();
+        this.faceDownCards = new ArrayDeque<>();
+        this.faceUpCards = new ArrayDeque<>();
     }
 
     public int getId() {
@@ -21,19 +22,24 @@ public class Player {
         this.id = id;
     }
 
-    public Stack<Card> getFaceDownCards() {
+    public Deque<Card> getFaceDownCards() {
         return faceDownCards;
     }
 
-    public void setFaceDownCards(Stack<Card> faceDownCards) {
+    public void setFaceDownCards(Deque<Card> faceDownCards) {
         this.faceDownCards = faceDownCards;
     }
 
-    public Stack<Card> getFaceUpCards() {
+    public Deque<Card> getFaceUpCards() {
         return faceUpCards;
     }
 
-    public void setFaceUpCards(Stack<Card> faceUpCards) {
+    public void setFaceUpCards(Deque<Card> faceUpCards) {
         this.faceUpCards = faceUpCards;
+    }
+
+    @Override
+    public String toString() {
+        return "Player " + this.getId();
     }
 }

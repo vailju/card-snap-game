@@ -40,7 +40,7 @@ public class SnapRuleGenerator {
             return number;
         }
         if (number < minimum) {
-            System.out.println("Not enough " +  displayName + ", try again!");
+            System.out.println("Not enough " + displayName + ", try again!");
         }
         return number;
     }

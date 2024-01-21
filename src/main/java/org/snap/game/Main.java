@@ -12,9 +12,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.snap.game.dto.Constants.PLAYER_STRING;
 import static org.snap.game.engine.Dealer.dealCards;
-import static org.snap.game.engine.SnapGameLogic.*;
+import static org.snap.game.engine.SnapGameLogic.playSnap;
 import static org.snap.game.engine.SnapRuleGenerator.getNumberOfDecks;
 import static org.snap.game.engine.SnapRuleGenerator.getNumberOfPlayers;
 
@@ -40,7 +39,7 @@ public class Main {
         List<Card> deck = Dealer.createStandardShuffledDecks(numDecks);
         dealCards(deck, players);
 
-        Player winner = playSnap(players, deck, numPlayers, reader, matchCondition, 10);
-        System.out.println(PLAYER_STRING + winner.getId() + " wins!");
+        Player winner = playSnap(players, deck, numPlayers, reader, matchCondition, 20);
+        System.out.println(winner + " wins!");
     }
 }

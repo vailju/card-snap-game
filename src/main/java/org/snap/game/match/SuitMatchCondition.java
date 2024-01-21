@@ -6,6 +6,9 @@ public class SuitMatchCondition implements MatchCondition {
 
     @Override
     public boolean doCardsMatch(Card previousCard, Card currentCard) {
+        if (previousCard == null || currentCard == null) {
+            return false;
+        }
         return previousCard.getSuit() == currentCard.getSuit();
     }
 
