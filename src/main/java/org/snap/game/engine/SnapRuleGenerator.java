@@ -4,10 +4,24 @@ import org.snap.game.match.MatchCondition;
 
 import java.io.BufferedReader;
 
+import static org.snap.game.dto.Constants.DEFAULT_SECONDS_BETWEEN_DRAW;
+import static org.snap.game.dto.Constants.printNewLine;
+
 public class SnapRuleGenerator {
 
     private SnapRuleGenerator() {
 
+    }
+
+    public static int getSecondsBetweenDraw(String param) {
+        try {
+            return Integer.parseInt(param);
+        } catch (Exception e) {
+            int defaultSecondsBetweenDraw = DEFAULT_SECONDS_BETWEEN_DRAW;
+            System.out.println("The parameter was not a number, defaulting to " + defaultSecondsBetweenDraw + " seconds between draws.");
+            printNewLine();
+            return defaultSecondsBetweenDraw;
+        }
     }
 
     public static int getNumberOfPlayers(BufferedReader reader) {

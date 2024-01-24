@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.snap.game.dto.Constants.STANDARD_DECK_VALUES;
 
@@ -18,13 +19,19 @@ public class Dealer {
 
     }
 
+    public static List<Card> createStandardShuffledDecks(int numDecks) {
+        return createStandardDecks(numDecks, true);
+    }
+
+    public static List<Card> createStandardDecks(int numDecks, boolean toShuffle) {
+        return createDecks(numDecks, STANDARD_DECK_VALUES, Suit.values(), toShuffle);
+    }
+
     public static List<Card> createDecks(int numDecks, List<String> values, Suit[] suits, boolean toShuffle) {
         List<Card> singleDeck = createSingleDeck(values, suits);
 
         List<Card> deck = new ArrayList<>();
-        for (int i = 0; i < numDecks; i++) {
-            deck.addAll(singleDeck);
-        }
+        IntStream.rangeClosed(1, numDecks).forEach(i -> deck.addAll(singleDeck));
         if (toShuffle) {
             Collections.shuffle(deck);
         }
@@ -37,21 +44,8 @@ public class Dealer {
         return deck;
     }
 
-    public static List<Card> createStandardDecks(int numDecks, boolean toShuffle) {
-
-        return createDecks(numDecks, STANDARD_DECK_VALUES, Suit.values(), toShuffle);
-    }
-
-    public static List<Card> createStandardShuffledDecks(int numDecks) {
-
-        return createStandardDecks(numDecks, true);
-    }
-
     public static void dealCards(List<Card> deck, List<Player> players) {
         int numPlayers = players.size();
-        for (int i = 0; i < deck.size(); i++) {
-            int currentPlayer = i % numPlayers;
-            players.get(currentPlayer).getFaceDownCards().push(deck.get(i));
-        }
+        IntStream.range(0, deck.size()).forEach(i -> players.get(i % numPlayers).getFaceDownCards().push(deck.get(i)));
     }
 }
